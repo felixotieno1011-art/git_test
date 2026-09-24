@@ -1,0 +1,148 @@
+=====================================================
+        CYBER CAFÉ NETWORK AUDIT REPORT
+=====================================================
+
+Client:      Mama Njeri's Cyber Café
+Technician:  Felix Otieno
+Date:        2026-09-24
+Location:    Kisumu, Kenya
+
+-----------------------------------------------------
+1. NETWORK INFORMATION
+-----------------------------------------------------
+
+Local IP Address:    192.168.1.126
+Router IP Address:   192.168.1.1
+Network Range:       192.168.1.0/24
+Connection Type:     Wi-Fi
+Wi-Fi Link Speed:    72.2 Mbps
+MAC Address (Wi-Fi): 98-03-CF-02-3A-F2
+Ethernet Status:     Disconnected
+
+-----------------------------------------------------
+2. CONNECTIVITY TESTS
+-----------------------------------------------------
+
+Test 1: Ping to Router (192.168.1.1)
+  - Result: SUCCESS
+  - Times: 1ms, 2ms, 77ms, 70ms
+  - Verdict: GOOD (mostly fast, with occasional spikes)
+
+Test 2: Ping to Google
+  - Result: SUCCESS
+  - Times: 341ms, 213ms, 295ms, 223ms
+  - Average: 268ms
+  - Verdict: SLOW (should be 20-100ms)
+
+Test 3: DNS Lookup (google.com)
+  - IPv4: 142.250.75.142
+  - IPv6: 2a00:1450:4018:811::200e
+  - Verdict: WORKING
+
+-----------------------------------------------------
+3. TRACEROUTE ANALYSIS (to google.com)
+-----------------------------------------------------
+
+Hop 1: 192.168.1.1              4 ms    ✅ (local router - FAST)
+Hop 2: 172.22.42.131           59 ms    ⚠️ (Airtel entry)
+Hop 3: 172.22.42.131          129 ms    ❌ (SAME IP - bottleneck)
+Hop 4: 172.22.33.148          223 ms    ❌ (very slow)
+Hop 5: 172.18.28.9            100 ms    ⚠️
+Hop 6: 172.18.28.19            92 ms    ⚠️
+Hop 7: 102.0.108.255          208 ms    ❌ (Airtel Kenya)
+Hop 8: * * * (timed out)              (router not responding)
+Hop 9: 142.250.202.206        257 ms    ⚠️ (Google)
+
+TOTAL ROUND TRIP: 257 ms
+
+-----------------------------------------------------
+4. NETWORK SCAN RESULTS
+-----------------------------------------------------
+
+Devices found on the network: 5
+
+  192.168.1.1     - Router
+  192.168.1.114   - Phone (technician's)
+  192.168.1.126   - Laptop (used for audit)
+  192.168.1.127   - Unknown device
+  192.168.1.179   - Unknown device
+
+-----------------------------------------------------
+5. NETWORK ADAPTERS
+-----------------------------------------------------
+
+Adapter    Status         Speed
+-------    ------         -----
+Wi-Fi      Up             72.2 Mbps
+Ethernet   Disconnected   0 bps
+
+-----------------------------------------------------
+6. DNS CONFIGURATION
+-----------------------------------------------------
+
+DNS Server: 192.168.1.1 (the router)
+
+Note: Router forwards DNS queries to ISP DNS.
+Alternative: Set to 8.8.8.8 (Google) may be faster.
+
+-----------------------------------------------------
+7. FINDINGS
+-----------------------------------------------------
+
+The local network is healthy:
+  ✅ Router responds quickly (1-4 ms)
+  ✅ Wi-Fi link speed is adequate (72 Mbps)
+  ✅ DNS lookups work
+  ✅ 5 devices connected successfully
+
+However, the ISP connection is the bottleneck:
+  ❌ Ping to Google averages 268 ms (should be 20-100 ms)
+  ❌ Traceroute shows slowness begins at Airtel's network
+  ❌ Hop 3 shows the SAME IP as hop 2 (routing issue)
+  ❌ Traffic from hop 4 onward is consistently above 200 ms
+
+Root cause: The problem is NOT in the cyber café's local
+setup. The problem is with Airtel Kenya's network routing.
+
+-----------------------------------------------------
+8. RECOMMENDATIONS
+-----------------------------------------------------
+
+1. Contact Airtel Kenya support
+   - Report slow speeds
+   - Provide traceroute results
+   - Ask them to check routing at 172.22.42.131
+
+2. Change DNS servers
+   - Currently using router (192.168.1.1)
+   - Change to 8.8.8.8 and 8.8.4.4 (Google DNS)
+   - May improve browsing speed slightly
+
+3. Test with Ethernet cable
+   - Rules out Wi-Fi issues
+   - Should give same result (problem is ISP-side)
+
+4. Consider backup internet
+   - If Airtel keeps failing, add a second provider
+   - Or upgrade to a business plan
+
+5. Monitor over a week
+   - Record speed tests morning/afternoon/evening
+   - Identifies if it's a peak-hour problem
+
+-----------------------------------------------------
+9. TECHNICIAN'S CONCLUSION
+-----------------------------------------------------
+
+Based on this audit, the cyber café's local network
+is fully functional. The slowness reported by customers
+is caused by the ISP (Airtel Kenya), not by any fault
+in the café's equipment, router, or Wi-Fi setup.
+
+The café does NOT need new hardware.
+The café SHOULD escalate this to Airtel.
+
+=====================================================
+Signed: Felix Otieno
+Date: 2026-09-24
+=====================================================
