@@ -1,0 +1,169 @@
+=====================================================
+   CYBER CAFÉ NETWORK AUDIT — TERMUX VERSION
+=====================================================
+
+Client:      Mama Njeri's Cyber Café (simulated)
+Technician:  Felix Otieno
+Date:        2026-09-24
+Device:      Android phone running Termux
+Location:    Kisumu, Kenya
+
+-----------------------------------------------------
+1. PUBLIC IP ADDRESS
+-----------------------------------------------------
+
+Method: curl ifconfig.me
+Result: 102.0.100.251
+
+Notes:
+- IP starts with "102." — Airtel Kenya's range
+- The internet sees this as our public address
+
+-----------------------------------------------------
+2. LOCAL NETWORK
+-----------------------------------------------------
+
+Method: nmap -sn 192.168.1.0/24
+Devices found: 3
+
+  192.168.1.1     Router
+  192.168.1.114   Phone (this device)
+  192.168.1.189   Unknown device
+
+Scan time: 2.93 seconds
+
+Limitation: Android restricts nmap scans.
+Full scan possible only on a laptop.
+
+-----------------------------------------------------
+3. CONNECTIVITY TESTS
+-----------------------------------------------------
+
+Test A: Ping to Router (192.168.1.1)
+  Result: SUCCESS
+  Times: 10.5ms, 9.98ms, 10.0ms, 33.4ms
+  Average: 16ms
+  Packet loss: 0%
+  Verdict: EXCELLENT ✅
+
+Test B: Ping to Google (google.com)
+  Result: SLOW ⚠️
+  Times: 753ms, 2074ms
+  Average: 1414ms
+  Packet loss: 50%
+  Verdict: VERY BAD ❌
+
+-----------------------------------------------------
+4. DNS TESTS
+-----------------------------------------------------
+
+Method: nslookup google.com
+Server used: 8.8.8.8 (Google DNS)
+
+Results:
+  google.com → 142.250.75.142       (IPv4)
+  google.com → 2a00:1450:4028:806::200e  (IPv6)
+
+Verdict: WORKING ✅
+
+-----------------------------------------------------
+5. WEB TESTS
+-----------------------------------------------------
+
+Method: curl -I https://example.com
+
+Results:
+  Status Code: HTTP/2 200
+  Server: cloudflare
+  Content-Type: text/html
+  Cache Status: HIT
+
+Verdict: WORKING ✅
+
+-----------------------------------------------------
+6. FINDINGS
+-----------------------------------------------------
+
+The local network is healthy:
+  ✅ Router responds quickly (10–33 ms)
+  ✅ 3 devices connected successfully
+  ✅ DNS resolution works
+  ✅ Web requests succeed
+
+The ISP connection is the bottleneck:
+  ❌ Ping to Google averages 1414 ms (should be 20–100 ms)
+  ❌ 50% packet loss — half the packets disappear
+  ❌ This is far worse than the laptop's result (213–341 ms)
+
+Root cause: Airtel Kenya's network has a serious routing
+or congestion problem. This is confirmed by:
+  - The laptop's traceroute showing slowness at hop 3–4
+  - The phone's very high ping times
+  - The 50% packet loss
+
+-----------------------------------------------------
+7. RECOMMENDATIONS
+-----------------------------------------------------
+
+1. Contact Airtel Kenya immediately
+   - Report 50% packet loss and 1400+ ms latency
+   - Provide traceroute evidence
+   - Ask them to check routing at 172.22.42.131
+
+2. Test with a wired connection
+   - Ethernet cable directly to router
+   - Rules out Wi-Fi problems
+
+3. Monitor peak hours
+   - Test at 8 AM, 1 PM, 7 PM
+   - Identify when Airtel is most congested
+
+4. Consider an alternative ISP
+   - If Airtel keeps failing, try Safaricom or another provider
+
+5. Set up monitoring
+   - Run the ping test every hour for a week
+   - Log results — you now know how
+
+-----------------------------------------------------
+8. TERMUX VS LAPTOP COMPARISON
+-----------------------------------------------------
+
+                        Laptop      Termux
+                        ------      ------
+Devices found           5           3
+Router ping (avg)       1–4 ms      10–33 ms
+Google ping (avg)       268 ms      1414 ms
+Packet loss to Google   20%         50%
+Traceroute available     ✅           ⚠️ (limited)
+Full nmap scan          ✅           ⚠️ (Android limits)
+
+Key insight:
+- Android restricts Termux — it can't see everything
+- A laptop gives full network visibility
+- But Termux is enough for basic diagnostics
+
+-----------------------------------------------------
+9. TECHNICIAN'S CONCLUSION
+-----------------------------------------------------
+
+This audit confirms with two independent devices:
+- The cyber café's local network is healthy
+- The ISP (Airtel Kenya) has serious problems
+- Customers complaining about slow internet
+  are correct — the issue is real and measurable
+
+Actions for the cyber café:
+  ❌ Do NOT buy new hardware
+  ✅ Do complain to Airtel with evidence
+  ✅ Do set up monitoring
+  ✅ Do consider a backup ISP
+
+-----------------------------------------------------
+Report written in: ~/learning/network_audit/
+Tools used: ping, curl, nmap, nslookup
+Platform: Termux on Android
+-----------------------------------------------------
+
+Signed: Felix Otieno
+Date: 2026-09-24
