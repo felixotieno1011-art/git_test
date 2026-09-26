@@ -1,0 +1,32 @@
+NETWORK ANALYSIS — Cyber Café Audit
+Date: 2026-09-26
+Technician: Felix Otieno
+
+1. Average ping to 8.8.8.8: 111.3 ms
+   The best was 54 ms and the worst was 569 ms.
+   This means the connection is usually fast but
+   sometimes slows down a lot.
+
+2. Average ping to google.com: 393.6 ms
+   The best was 189 ms and the worst was 1104 ms.
+   This is much slower than 8.8.8.8. Sometimes it
+   went over 1 second. Websites would load slowly.
+
+3. DNS overhead: 282.3 ms
+   This is the difference between google.com and
+   8.8.8.8. It means looking up website names takes
+   a long time. This is probably the main reason
+   the network feels slow.
+
+4. Network stability: Erratic
+   The ping times went up and down a lot. Sometimes
+   54 ms, sometimes 569 ms. That is not stable. The
+   network has big spikes.
+
+5. Worst times of day:
+   I only tested for about 12 minutes, so I cannot
+   say much about times of day. The worst spike was
+   at 12:00 PM. To find the real pattern, I would
+   need to run this monitor for a full day.
+
+Signed: Felix Otieno

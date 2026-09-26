@@ -1,0 +1,78 @@
+[2026-09-26 11:31:01] Target: 8.8.8.8 -> Avg Time: 6.849ms
+[2026-09-26 11:31:01] Target: google.com -> Avg Time: 8.847ms
+--------------------------------------------------
+===== 2026-09-26 11:50:59 =====
+Ping to 8.8.8.8: 71.244 ms avg
+Ping to google.com: 692.401 ms avg
+Difference: 621.1569999999999 ms (DNS overhead)
+
+===== 2026-09-26 11:51:16 =====
+Ping to 8.8.8.8: 72.385 ms avg
+Ping to google.com: 188.593 ms avg
+Difference: 116.20799999999998 ms (DNS overhead)
+
+===== 2026-09-26 11:51:34 =====
+Ping to 8.8.8.8: 69.102 ms avg
+Ping to google.com: 190.118 ms avg
+Difference: 121.01599999999999 ms (DNS overhead)
+
+===== 2026-09-26 11:51:53 =====
+Ping to 8.8.8.8: 76.984 ms avg
+Ping to google.com: 312.274 ms avg
+Difference: 235.29000000000002 ms (DNS overhead)
+
+===== 2026-09-26 11:57:02 =====
+Ping to 8.8.8.8: 57.189 ms avg
+Ping to google.com: 1103.524 ms avg
+Difference: 1046.3349999999998 ms (DNS overhead)
+
+===== 2026-09-26 11:59:29 =====
+Ping to 8.8.8.8: 72.158 ms avg
+Ping to google.com: 449.122 ms avg
+Difference: 376.964 ms (DNS overhead)
+
+===== 2026-09-26 11:59:42 =====
+Ping to 8.8.8.8: 63.226 ms avg
+Ping to google.com: 359.805 ms avg
+Difference: 296.579 ms (DNS overhead)
+
+===== 2026-09-26 11:59:56 =====
+Ping to 8.8.8.8: 87.045 ms avg
+Ping to google.com: 353.308 ms avg
+Difference: 266.263 ms (DNS overhead)
+
+===== 2026-09-26 12:00:10 =====
+Ping to 8.8.8.8: 568.771 ms avg
+Ping to google.com: 512.565 ms avg
+Difference: -56.205999999999904 ms (DNS overhead)
+
+===== 2026-09-26 12:00:25 =====
+Ping to 8.8.8.8: 95.805 ms avg
+Ping to google.com: 277.747 ms avg
+Difference: 181.942 ms (DNS overhead)
+
+===== 2026-09-26 12:00:39 =====
+Ping to 8.8.8.8: 73.391 ms avg
+Ping to google.com: 351.145 ms avg
+Difference: 277.75399999999996 ms (DNS overhead)
+
+===== 2026-09-26 12:00:52 =====
+Ping to 8.8.8.8: 53.855 ms avg
+Ping to google.com: 212.426 ms avg
+Difference: 158.571 ms (DNS overhead)
+
+===== 2026-09-26 12:01:06 =====
+Ping to 8.8.8.8: 138.0 ms avg
+Ping to google.com: 402.968 ms avg
+Difference: 264.968 ms (DNS overhead)
+
+===== 2026-09-26 12:01:20 =====
+Ping to 8.8.8.8: 89.277 ms avg
+Ping to google.com: 212.942 ms avg
+Difference: 123.665 ms (DNS overhead)
+
+===== 2026-09-26 12:01:33 =====
+Ping to 8.8.8.8: 80.67 ms avg
+Ping to google.com: 284.886 ms avg
+Difference: 204.216 ms (DNS overhead)
+
