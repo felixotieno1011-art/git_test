@@ -76,3 +76,58 @@ Ping to 8.8.8.8: 80.67 ms avg
 Ping to google.com: 284.886 ms avg
 Difference: 204.216 ms (DNS overhead)
 
+===== 2026-09-26 12:39:38 =====
+Ping to 8.8.8.8: 57.587 ms
+Ping to google.com: 76.009 ms
+DNS overhead: 18.421999999999997 ms
+
+===== 2026-09-26 12:40:01 =====
+Ping to 8.8.8.8: 72.61 ms
+Ping to google.com: 61.938 ms
+DNS overhead: -10.671999999999997 ms
+
+===== 2026-09-26 12:40:19 =====
+Ping to 8.8.8.8: 60.548 ms
+Ping to google.com: 79.652 ms
+DNS overhead: 19.104 ms
+
+===== 2026-09-26 12:40:38 =====
+Ping to 8.8.8.8: 67.036 ms
+Ping to google.com: 64.981 ms
+DNS overhead: -2.055000000000007 ms
+
+===== 2026-09-26 12:40:56 =====
+Ping to 8.8.8.8: 301.829 ms
+Ping to google.com: 284.953 ms
+DNS overhead: -16.876000000000033 ms
+
+===== 2026-09-26 12:41:15 =====
+Ping to 8.8.8.8: 589.721 ms
+Ping to google.com: 993.967 ms
+DNS overhead: 404.246 ms
+
+===== 2026-09-26 12:41:35 =====
+Ping to 8.8.8.8: 496.429 ms
+Ping to google.com: 133.598 ms
+DNS overhead: -362.83099999999996 ms
+
+===== 2026-09-26 12:41:55 =====
+Ping to 8.8.8.8: 850.797 ms
+Ping to google.com: 426.243 ms
+DNS overhead: -424.55400000000003 ms
+
+===== 2026-09-26 12:42:14 =====
+Ping to 8.8.8.8: 856.886 ms
+Ping to google.com: 2976.824 ms
+DNS overhead: 2119.938 ms
+
+===== 2026-09-26 12:42:41 =====
+Ping to 8.8.8.8: 1508.807 ms
+Ping to google.com: 1340.425 ms
+DNS overhead: -168.38200000000006 ms
+
+===== 2026-09-26 12:43:04 =====
+Ping to 8.8.8.8: 636.905 ms
+Ping to google.com: 1411.145 ms
+DNS overhead: 774.24 ms
+

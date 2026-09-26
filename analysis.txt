@@ -1,32 +1,45 @@
-NETWORK ANALYSIS — Cyber Café Audit
+===== NETWORK ANALYSIS REPORT =====
 Date: 2026-09-26
 Technician: Felix Otieno
+Client: Cyber Café (simulated)
 
-1. Average ping to 8.8.8.8: 111.3 ms
-   The best was 54 ms and the worst was 569 ms.
-   This means the connection is usually fast but
-   sometimes slows down a lot.
+1. PING TO 8.8.8.8 (Google DNS server)
+   Average: 275.7 ms
+   Best: 53.9 ms
+   Worst: 1508.8 ms
+   → The network is unstable. It jumps between
+     fast (54 ms) and terrible (1.5 seconds).
 
-2. Average ping to google.com: 393.6 ms
-   The best was 189 ms and the worst was 1104 ms.
-   This is much slower than 8.8.8.8. Sometimes it
-   went over 1 second. Websites would load slowly.
+2. PING TO google.com
+   Average: 529.0 ms
+   Best: 61.9 ms
+   Worst: 2976.8 ms
+   → Much worse than 8.8.8.8. Sometimes it takes
+     almost 3 seconds to reach Google. Websites
+     would load extremely slowly.
 
-3. DNS overhead: 282.3 ms
-   This is the difference between google.com and
-   8.8.8.8. It means looking up website names takes
-   a long time. This is probably the main reason
-   the network feels slow.
+3. DNS OVERHEAD
+   Average: 253.3 ms
+   → This is the biggest problem. Looking up a
+     domain name takes 253 ms longer than pinging
+     a raw IP. That's the DNS slowdown.
 
-4. Network stability: Erratic
-   The ping times went up and down a lot. Sometimes
-   54 ms, sometimes 569 ms. That is not stable. The
-   network has big spikes.
+4. NETWORK STABILITY
+   Very erratic. Sometimes fast, sometimes broken.
+   This pattern suggests congestion at the ISP.
 
-5. Worst times of day:
-   I only tested for about 12 minutes, so I cannot
-   say much about times of day. The worst spike was
-   at 12:00 PM. To find the real pattern, I would
-   need to run this monitor for a full day.
+5. WHEN IT HAPPENS
+   Around 12:40 PM the network was fine.
+   Around 12:41 PM it collapsed.
+   This may be a peak-hour problem.
+
+RECOMMENDATIONS
+1. Change DNS servers to Google (8.8.8.8) or
+   Cloudflare (1.1.1.1) at the router level.
+2. Report to Airtel with this data.
+3. Test again at different times (morning, evening)
+   to find the pattern.
+4. Consider a backup ISP if the problem continues.
 
 Signed: Felix Otieno
+Date: 2026-09-26

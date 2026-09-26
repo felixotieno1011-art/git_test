@@ -1,54 +1,66 @@
 #!/usr/bin/env python3
-# The report script - reads the log and makes a summary
+# report.py
+# Reads the log file and shows a summary report.
 
-import re     # for finding numbers in the log
+import re
 
-# The file we'll read
-logfile = "network_log.txt"
 
-# Lists to hold all the numbers we find
-ping_8888_list = []      # will hold all 8.8.8.8 ping times
-ping_google_list = []    # will hold all google.com ping times
+def read_numbers(pattern, filename):
+    """Read a file and return all numbers that match a pattern."""
+    numbers = []
+    with open(filename, "r") as f:
+        for line in f:
+            match = re.search(pattern, line)
+            if match:
+                numbers.append(float(match.group(1)))
+    return numbers
 
-# Open the log file and read it line by line
-with open(logfile, "r") as f:          # "r" = read mode
-    for line in f:                     # go through each line
-        # Look for the "Ping to 8.8.8.8: NUMBER ms" line
-        match_8888 = re.search(r"Ping to 8\.8\.8\.8: ([\d.]+) ms", line)
-        if match_8888:
-            ping_8888_list.append(float(match_8888.group(1)))
 
-        # Look for the "Ping to google.com: NUMBER ms" line
-        match_google = re.search(r"Ping to google\.com: ([\d.]+) ms", line)
-        if match_google:
-            ping_google_list.append(float(match_google.group(1)))
+def show_stats(name, values):
+    """Print average, best, and worst for a list of numbers."""
+    if len(values) == 0:
+        print(name, "— no data")
+        return
 
-# Count how many tests we ran
-total = len(ping_8888_list)
+    average = sum(values) / len(values)
+    worst = max(values)
+    best = min(values)
 
-# Calculate statistics for 8.8.8.8
-if total > 0:
-    avg_8888 = sum(ping_8888_list) / total
-    worst_8888 = max(ping_8888_list)
-    best_8888 = min(ping_8888_list)
-    avg_google = sum(ping_google_list) / total
-    worst_google = max(ping_google_list)
-    best_google = min(ping_google_list)
-    dns_overhead = avg_google - avg_8888
+    print(name)
+    print("  Tests:", len(values))
+    print("  Average:", round(average, 1), "ms")
+    print("  Best:", round(best, 1), "ms")
+    print("  Worst:", round(worst, 1), "ms")
 
-    # Print the report
+
+def main():
+    logfile = "network_log.txt"
+
+    # Find all ping numbers in the log
+    ip_times = read_numbers(r"Ping to 8\.8\.8\.8: ([\d.]+) ms", logfile)
+    domain_times = read_numbers(r"Ping to google\.com: ([\d.]+) ms", logfile)
+
     print("===== NETWORK HEALTH REPORT =====")
-    print(f"Total tests: {total}")
     print()
-    print(f"Average ping to 8.8.8.8: {avg_8888:.1f} ms")
-    print(f"Worst: {worst_8888:.0f} ms")
-    print(f"Best: {best_8888:.0f} ms")
+
+    show_stats("Ping to 8.8.8.8", ip_times)
     print()
-    print(f"Average ping to google.com: {avg_google:.1f} ms")
-    print(f"Worst: {worst_google:.0f} ms")
-    print(f"Best: {best_google:.0f} ms")
-    print()
-    print(f"DNS overhead (avg): {dns_overhead:.1f} ms")
-    print("-> If this is high, DNS is slow")
-else:
-    print("No data yet. Run monitor.py first.")
+    show_stats("Ping to google.com", domain_times)
+
+    # DNS overhead
+    if len(ip_times) > 0 and len(domain_times) > 0:
+        avg_ip = sum(ip_times) / len(ip_times)
+        avg_domain = sum(domain_times) / len(domain_times)
+        overhead = avg_domain - avg_ip
+        print()
+        print("DNS overhead (avg):", round(overhead, 1), "ms")
+        if overhead > 200:
+            print("  → DNS is very slow")
+        elif overhead > 100:
+            print("  → DNS is slow")
+        else:
+            print("  → DNS is fine")
+
+
+if __name__ == "__main__":
+    main()
